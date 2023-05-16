@@ -1,4 +1,4 @@
-package com.example.saupaymobile
+package com.example.saupay.model.transaction
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

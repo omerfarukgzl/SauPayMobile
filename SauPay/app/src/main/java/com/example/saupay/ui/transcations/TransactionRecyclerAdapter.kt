@@ -1,11 +1,12 @@
-package com.example.saupay
+package com.example.saupay.ui.transcations
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import com.example.saupaymobile.Transaction
+import com.example.saupay.R
+import com.example.saupay.model.transaction.Transaction
 
 
 class TransactionRecyclerAdapter(val transactionList:List<Transaction>) : RecyclerView.Adapter<TransactionRecyclerAdapter.PostViewHolder>(){
