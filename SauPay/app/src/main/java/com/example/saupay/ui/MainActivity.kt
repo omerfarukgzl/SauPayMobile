@@ -1,10 +1,14 @@
 package com.example.saupay.ui
 
+import android.os.Build
 import android.os.Bundle
+import android.util.Log
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
+import com.example.saupay.data.remote.login.response.LoginResponse
 import com.example.saupay.databinding.ActivityMainBinding
-import com.example.saupay.ui.transcations.TransactionRecyclerAdapter
+import com.example.saupay.ui.transactions.TransactionRecyclerAdapter
 
 class MainActivity :  AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
@@ -13,6 +17,9 @@ class MainActivity :  AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
 
+    private var loginResponse: LoginResponse? = null
+
+    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
@@ -20,12 +27,25 @@ class MainActivity :  AppCompatActivity() {
         setContentView(binding.root)
 
 
+         loginResponse = intent.extras?.getSerializable("Login_Response") as LoginResponse?
+
+        Log.d("loginResponseTokOMER", loginResponse?.token.toString())
+        Log.d("loginResponseRefOMER", loginResponse?.refreshToken.toString())
+
+        if (loginResponse != null) {
+            // Objeyi kullanmak için burada işlemler yapın
+            Log.d("Omer", "Received object from MainActivity: $loginResponse")
+        }
+
+
+
+
 
 
     }
 
-    fun getMyData(): String? {
-        return binding.userIdText.text.toString()
+    fun getSessionToken(): String? {
+        return loginResponse!!.token.toString()
     }
 
 

@@ -6,7 +6,7 @@
     app:startDestination="@id/transactionListFragment2">
     <fragment
         android:id="@+id/transactionListFragment2"
-        android:name="com.example.saupay.ui.transcations.TransactionListFragment"
+        android:name="com.example.saupay.ui.transactions.TransactionListFragment"
         android:label="fragment_transaction_list"
         tools:layout="@layout/fragment_transaction_list" />
 </navigation>
