@@ -8,6 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.saugetir.data.remote.model.request.EncryptedPaymentRequest
 import com.example.saupay.R
@@ -29,8 +30,7 @@ import retrofit2.Callback
 import retrofit2.Response
 
 
-class
-ChooseCardFragment : Fragment() {
+class ChooseCardFragment : Fragment() {
     private var _binding: FragmentChooseCardBinding? = null
 
     // This property is only valid between onCreateView and
@@ -53,7 +53,8 @@ ChooseCardFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_choose_card, container, false)
+        _binding = FragmentChooseCardBinding.inflate(inflater, container, false)
+        viewManager = LinearLayoutManager(context)
 
         val bundle: ChooseCardFragmentArgs by navArgs()
         val email = bundle.email
@@ -61,20 +62,20 @@ ChooseCardFragment : Fragment() {
         val loginResponse= (activity as PaymentActivty).getLoginResponse()!!
         val paymentToken = (activity as PaymentActivty).getPaymentToken()!!
 
-        Log.d("BenGeldim", loginResponse?.token.toString())
+        Log.d("ChooseCardLogin", loginResponse?.token.toString())
 
-        getCardByUserId(paymentToken!!, loginResponse!!.token.toString(), email!!)
+        getCardByUserEmail(paymentToken!!, loginResponse!!.token.toString(), email!!)
 
         return binding.root
 
     }
 
-    fun getCardByUserId(paymentToken:String, sessionToken:String,email:String)
+    fun getCardByUserEmail(paymentToken:String, sessionToken:String,email:String)
     {
         try {
             var encryptedPaymentRequest = EncryptedPaymentRequest()
             val paramObject = JSONObject()
-            paramObject.put("token", paymentToken)
+            paramObject.put("email", email)
             Log.d("paramObject", paramObject.toString() )
 
             encryptedPaymentRequest.data = EncryptionUtil.encrypt(paramObject.toString())
@@ -85,7 +86,7 @@ ChooseCardFragment : Fragment() {
             val repository = CardRepository(RetrofitClientCard.getUserCards())
             val call = repository.getUserCards(encryptedPaymentRequest)
 
-            Log.d("BenGeldim2", sessionToken)
+            Log.d("BenGeldimCard", sessionToken)
             call.enqueue(object : Callback<CardResponse> {
                 //onResponse fonksiyonu, sunucudan dönen cevabı işlemek için kullanılır.
                 override fun onResponse(call: Call<CardResponse>, response: Response<CardResponse>) {
@@ -114,6 +115,13 @@ ChooseCardFragment : Fragment() {
                     else {
                         Log.d("MainActivity","else Hatası")
                         Log.d("MainActivity", response.errorBody().toString())
+
+                        viewAdapter = CardRecyclerAdapter(listOf())
+                        recyclerView = binding.recyclerView.apply {
+                            setHasFixedSize(true)
+                            layoutManager = viewManager
+                            adapter = viewAdapter
+                        }
 /*                        val errorBody = response.errorBody()?.string()
 
                         val gson = Gson()
@@ -121,6 +129,8 @@ ChooseCardFragment : Fragment() {
 
                         val transactionResponse = errorResponse.status?.errorDescription
                         // Burada, errorResponse özel hata cevabını içerecektir.
+
+
 
                         Log.d("MainActivity",errorBody.toString())
                         Log.d("MainActivity", "isn't Successful")
