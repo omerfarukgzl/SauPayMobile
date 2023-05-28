@@ -4,7 +4,7 @@ import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import java.math.BigDecimal
 
-data class Data (
+data class Payment (
     @SerializedName("merchantName") //
     @Expose // Bu annotation ile Gson kütüphanesi bu alanı serileştirmeye dahil eder.
     val merchantName: String,

@@ -1,4 +1,4 @@
-package com.example.saupay.ui.payment
+package com.example.saupay.ui.payment.verification
 
 import android.os.Bundle
 import android.util.Log
@@ -8,7 +8,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.fragment.findNavController
-import com.example.saugetir.data.remote.model.request.EncryptedPaymentRequest
+import com.example.saugetir.data.remote.model.request.EncryptedRequest
 import com.example.saupay.data.remote.login.response.LoginResponse
 import com.example.saupay.data.remote.payment.PaymentRepository
 import com.example.saupay.data.remote.payment.RetrofitClientPayment
@@ -53,7 +53,7 @@ class PaymentFragment : Fragment() {
     fun getTransactionByToken(paymentToken:String, sessionToken:String, email :String)
     {
         try {
-            var encryptedPaymentRequest = EncryptedPaymentRequest()
+            var encryptedPaymentRequest = EncryptedRequest()
             val paramObject = JSONObject()
             paramObject.put("token", paymentToken)
             Log.d("paramObject", paramObject.toString() )
@@ -80,10 +80,10 @@ class PaymentFragment : Fragment() {
                             val transactionResponse = response.body()!!
                             Log.d("transactionResponse", transactionResponse.toString())
 
-                            binding.AmountText.text = transactionResponse.data?.amount.toString()
-                            binding.merchantNameText.text = transactionResponse.data?.merchantName.toString()
+                            binding.AmountText.text = transactionResponse.payment?.amount.toString()
+                            binding.merchantNameText.text = transactionResponse.payment?.merchantName.toString()
 
-                            var date = transactionResponse.data?.date.toString().split(" ")
+                            var date = transactionResponse.payment?.date.toString().split(" ")
                             binding.LocalDateText.text = date[0]
                             binding.LocalTimeText.text = date[1]
 

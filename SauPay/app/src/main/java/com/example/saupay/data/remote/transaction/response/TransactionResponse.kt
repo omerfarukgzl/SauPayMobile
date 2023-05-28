@@ -1,6 +1,6 @@
 package com.example.saupay.data.remote.transaction.response
 
-import com.example.saupay.data.remote.transaction.errorResponse.Status
+import com.example.saupay.data.remote.errorResponse.Status
 import com.example.saupay.model.transaction.Data
 import com.google.gson.annotations.SerializedName
 

@@ -6,7 +6,7 @@
     app:startDestination="@id/paymentFragment">
     <fragment
         android:id="@+id/paymentFragment"
-        android:name="com.example.saupay.ui.payment.PaymentFragment"
+        android:name="com.example.saupay.ui.payment.verification.PaymentFragment"
         android:label="fragment_payment"
         tools:layout="@layout/fragment_payment" >
         <action
@@ -16,11 +16,36 @@
     </fragment>
     <fragment
         android:id="@+id/chooseCardFragment"
-        android:name="com.example.saupay.ui.payment.card.ChooseCardFragment"
+        android:name="com.example.saupay.ui.payment.choosecard.ChooseCardFragment"
         android:label="fragment_choose_card"
         tools:layout="@layout/fragment_choose_card" >
         <argument
             android:name="email"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_chooseCardFragment_to_treeDSecureFragment"
+            app:destination="@id/treeDSecureFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/treeDSecureFragment"
+        android:name="com.example.saupay.ui.payment.treedsecure.TreeDSecureFragment"
+        android:label="fragment_tree_d_secure"
+        tools:layout="@layout/fragment_tree_d_secure" >
+        <argument
+            android:name="merchantName"
+            app:argType="string" />
+        <argument android:name="amount" />
+        <argument
+            android:name="date"
+            app:argType="string" />
+        <argument
+            android:name="clock"
+            app:argType="string" />
+        <argument
+            android:name="cardNumber"
+            app:argType="string" />
+        <argument
+            android:name="telNumber"
             app:argType="string" />
     </fragment>
 </navigation>

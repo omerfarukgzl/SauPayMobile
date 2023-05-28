@@ -15,7 +15,7 @@ import com.example.saupay.data.remote.login.response.LoginResponse
 import com.example.saupay.databinding.FragmentLoginBinding
 import com.example.saupay.ui.authentication.AuthenticationActivty
 import com.example.saupay.ui.MainActivity
-import com.example.saupay.ui.payment.PaymentActivty
+import com.example.saupay.ui.payment.verification.PaymentActivty
 import org.json.JSONException
 import retrofit2.Call
 import retrofit2.Callback

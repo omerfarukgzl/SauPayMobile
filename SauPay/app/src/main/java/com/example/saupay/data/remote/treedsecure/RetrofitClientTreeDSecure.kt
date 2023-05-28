@@ -13,11 +13,11 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 
-object RetrofitClientCard {
+object RetrofitClientTreeDSecure {
 
     private var bearerToken: String = ""
 
-    private var cardApi: CardApi? = null
+    private var treeDSecureApi: TreeDSecureApi? = null
 
     private val interceptor = HttpLoggingInterceptor() //Kodunuzda oluşturulan interceptor örneği, HTTP istekleri ve yanıtları hakkında bilgi almak için kullanılabilir. Bu örneği, OkHttpClient.Builder'a ekleyerek günlüğe kaydedilecek log seviyesini belirleyebilirsiniz. Örneğin, aşağıdaki gibi interceptor'u ekleyebilirsiniz:
 
@@ -39,8 +39,8 @@ object RetrofitClientCard {
         chain.proceed(requestBuilder.build())
     }
 
-    fun getUserCards(): CardApi {
-        if (cardApi == null) {
+    fun getUserCards(): TreeDSecureApi {
+        if (treeDSecureApi == null) {
             //interceptor.level = HttpLoggingInterceptor.Level.BODY
 
             val client = OkHttpClient.Builder()
@@ -51,15 +51,15 @@ object RetrofitClientCard {
             val gson = GsonBuilder().disableHtmlEscaping().create()
             val gsonConverterFactory = GsonConverterFactory.create(gson)
 
-            cardApi = Retrofit.Builder()
+            treeDSecureApi = Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .addConverterFactory(gsonConverterFactory)
                 .client(client)
                 .build()
-                .create(CardApi::class.java)
+                .create(TreeDSecureApi::class.java)
 
         }
-        return cardApi!!
+        return treeDSecureApi!!
     }
 
     fun setBearerToken(token: String) {

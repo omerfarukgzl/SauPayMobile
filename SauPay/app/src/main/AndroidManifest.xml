@@ -37,7 +37,7 @@
                 android:value="" />
         </activity>
         <activity
-            android:name=".ui.payment.PaymentActivty"
+            android:name=".ui.payment.verification.PaymentActivty"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

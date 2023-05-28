@@ -1,4 +1,4 @@
-package com.example.saupay.ui.payment
+package com.example.saupay.ui.payment.verification
 
 import android.os.Bundle
 import android.util.Log

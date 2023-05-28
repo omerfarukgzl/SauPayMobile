@@ -1,6 +1,6 @@
 package com.example.saugetir.data.remote.model.request
 
-data class EncryptedPaymentRequest (
+data class EncryptedRequest (
     var data: String? = null
 ){
 }

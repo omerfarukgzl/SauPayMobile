@@ -1,4 +1,4 @@
-package com.example.saupay.data.remote.login.errorResponse
+package com.example.saupay.data.remote.errorResponse
 
 data class Status (
     val success : Boolean? = null,

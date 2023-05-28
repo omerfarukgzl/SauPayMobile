@@ -1,12 +1,12 @@
 package com.example.saupay.data.remote.payment.response
 
-import com.example.saupay.data.remote.transaction.errorResponse.Status
-import com.example.saupay.model.payment.Data
+import com.example.saupay.data.remote.errorResponse.Status
+import com.example.saupay.model.payment.Payment
 import com.google.gson.annotations.SerializedName
 
 data class PaymentResponse(
     @SerializedName("data")
-    val `data`: Data?,
+    val payment: Payment?,
     @SerializedName("status")
     val status: Status?) {
 
