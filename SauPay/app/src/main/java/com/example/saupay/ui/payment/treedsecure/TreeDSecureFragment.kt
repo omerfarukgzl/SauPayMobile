@@ -6,6 +6,8 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.saupay.R
 import com.example.saupay.databinding.FragmentTreeDSecureBinding
@@ -54,6 +56,20 @@ class TreeDSecureFragment : Fragment() {
         binding.date.text = date
         binding.clock.text = clock
         binding.phoneNumber.text = telNumber
+
+        binding.okButton.setOnClickListener {
+            if (binding.VerifyCode.text.toString().equals("545454"))
+            {
+                val action = TreeDSecureFragmentDirections.actionTreeDSecureFragmentToPaymentCompletedFragment(binding.merchantName.text.toString(), binding.amount.text.toString())
+                findNavController().navigate(action)
+                activity?.finish()
+            }
+            else
+            {
+                Log.d("TreeDSecureFragment", "VerifyCode: " + binding.VerifyCode.text.toString())
+                Toast.makeText(activity, "Doğrulama kodu hatalı", Toast.LENGTH_SHORT).show()
+            }
+        }
 
        return binding.root
     }

@@ -20,5 +20,11 @@ data class TreeDSecure (
     @SerializedName("userPhone")
     @Expose
     val userPhone:String?,
+    @SerializedName("bankName")
+    @Expose
+    val bankName:String?,
+    @SerializedName("organization")
+    @Expose
+    val organization:String?,
 ){
 }

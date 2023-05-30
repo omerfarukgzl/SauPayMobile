@@ -10,10 +10,12 @@
         android:id="@+id/merchantName"
         android:layout_width="209dp"
         android:layout_height="29dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="49dp"
         android:layout_marginEnd="43dp"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
         app:layout_constraintTop_toBottomOf="@+id/bankName" />
 
     <TextView
@@ -24,6 +26,8 @@
         android:layout_marginTop="49dp"
         android:text="İşyeri Adı:"
         android:textAlignment="textEnd"
+        android:textColor="#090909"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/cardOrganization" />
 
@@ -35,6 +39,8 @@
         android:layout_marginTop="16dp"
         android:text="Tutar:"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView7" />
 
@@ -42,10 +48,12 @@
         android:id="@+id/amount"
         android:layout_width="209dp"
         android:layout_height="29dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="44dp"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView8"
         app:layout_constraintTop_toBottomOf="@+id/merchantName" />
 
     <TextView
@@ -56,6 +64,8 @@
         android:layout_marginTop="11dp"
         android:text="Tel. No"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView11" />
 
@@ -63,10 +73,12 @@
         android:id="@+id/clock"
         android:layout_width="209dp"
         android:layout_height="29dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="43dp"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView10"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
     <TextView
@@ -77,6 +89,8 @@
         android:layout_marginTop="15dp"
         android:text="Saat"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView9" />
 
@@ -84,10 +98,12 @@
         android:id="@+id/date"
         android:layout_width="209dp"
         android:layout_height="29dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="18dp"
         android:layout_marginEnd="42dp"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/amount" />
 
     <TextView
@@ -98,6 +114,8 @@
         android:layout_marginTop="18dp"
         android:text="Tarih"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView8" />
 
@@ -105,10 +123,12 @@
         android:id="@+id/cardNumber"
         android:layout_width="209dp"
         android:layout_height="29dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="43dp"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView11"
         app:layout_constraintTop_toBottomOf="@+id/clock" />
 
     <TextView
@@ -119,6 +139,8 @@
         android:layout_marginTop="15dp"
         android:text="Kart Numarası"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
@@ -126,10 +148,12 @@
         android:id="@+id/phoneNumber"
         android:layout_width="209dp"
         android:layout_height="29dp"
+        android:layout_marginStart="16dp"
         android:layout_marginTop="11dp"
         android:layout_marginEnd="43dp"
-        android:textAlignment="viewStart"
+        android:textAlignment="textStart"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView14"
         app:layout_constraintTop_toBottomOf="@+id/cardNumber" />
 
     <EditText
@@ -143,6 +167,8 @@
         android:ems="10"
         android:hint="Kodu Giriniz"
         android:inputType="number"
+        android:textAlignment="textStart"
+        android:textColor="#000000"
         app:layout_constraintBottom_toTopOf="@+id/dontGetVerifyCodeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView15"
@@ -156,6 +182,8 @@
         android:layout_marginTop="10dp"
         android:text="Doğrulama Kodu"
         android:textAlignment="textEnd"
+        android:textColor="#000000"
+        android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView14" />
 
@@ -183,15 +211,16 @@
         android:layout_marginBottom="10dp"
         android:text="00:00"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/button"
+        app:layout_constraintBottom_toTopOf="@+id/okButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/divider3" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/okButton"
         android:layout_width="236dp"
         android:layout_height="52dp"
+        android:backgroundTint="#1B8C88"
         android:text="Tamam"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

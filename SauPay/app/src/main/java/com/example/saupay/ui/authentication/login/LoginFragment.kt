@@ -42,7 +42,7 @@ class LoginFragment : Fragment() {
         binding.loginButton.setOnClickListener{
 
             sendLoginRequest(binding.username.text.toString(),binding.password.text.toString())
-
+            activity?.finish()
         }
 
         return binding.root

@@ -8,6 +8,20 @@
     android:layout_height="match_parent"
     tools:context=".ui.payment.verification.PaymentFragment">
 
+    <View
+        android:id="@+id/view2"
+        android:layout_width="368dp"
+        android:layout_height="371dp"
+        android:layout_marginStart="37dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="17dp"
+        android:background="#E5E6E6"
+        app:layout_constraintBottom_toTopOf="@+id/payButton"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
     <TextView
         android:id="@+id/AmountText"
         android:layout_width="116dp"
@@ -57,6 +71,7 @@
         android:layout_marginTop="72dp"
         android:layout_marginEnd="50dp"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView"
@@ -105,6 +120,7 @@
         android:layout_marginTop="40dp"
         android:layout_marginEnd="50dp"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.962"
         app:layout_constraintStart_toEndOf="@+id/textView4"
@@ -117,6 +133,7 @@
         android:layout_marginTop="36dp"
         android:layout_marginEnd="50dp"
         android:text="TextView"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toEndOf="@+id/textView3"
@@ -129,25 +146,28 @@
         android:layout_marginStart="78dp"
         android:layout_marginEnd="82dp"
         android:text="Güvenli Ödeme"
+        android:textColor="#189E8F"
         android:textSize="34sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.111" />
+        app:layout_constraintVertical_bias="0.069" />
 
     <Button
         android:id="@+id/payButton"
         android:layout_width="258dp"
         android:layout_height="78dp"
         android:layout_marginStart="83dp"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="21dp"
         android:layout_marginEnd="82dp"
+        android:backgroundTint="#1C9498"
         android:text="Ödemeyi Tamamla"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.583"
+        app:layout_constraintHorizontal_bias="0.416"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+        app:layout_constraintTop_toBottomOf="@+id/view2" />
 
     <Button
         android:id="@+id/cancelButton"
@@ -156,6 +176,7 @@
         android:layout_marginStart="123dp"
         android:layout_marginTop="28dp"
         android:layout_marginEnd="124dp"
+        android:backgroundTint="#AC1E1E"
         android:text="İptal"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.478"
