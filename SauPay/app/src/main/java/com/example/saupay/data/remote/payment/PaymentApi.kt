@@ -10,8 +10,4 @@ interface PaymentApi {
 
     @POST("getTransactionMerchantByToken")
     fun transactionMerchantByTokenRequest(@Body encryptedPaymentRequest: EncryptedRequest): Call<PaymentResponse>
-
-
-
-
 }

@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_loginFragment_to_mainActivity"
             app:destination="@id/mainActivity" />
+        <action
+            android:id="@+id/action_loginFragment_to_paymentActivty"
+            app:destination="@id/paymentActivty" />
     </fragment>
     <activity
         android:id="@+id/mainActivity"
@@ -22,5 +25,20 @@
         <argument
             android:name="loginResponse"
             app:argType="com.example.saupay.data.remote.login.response.LoginResponse" />
+    </activity>
+    <activity
+        android:id="@+id/paymentActivty"
+        android:name="com.example.saupay.ui.payment.verification.PaymentActivty"
+        android:label="activity_payment"
+        tools:layout="@layout/activity_payment" >
+        <argument
+            android:name="loginResponse"
+            app:argType="com.example.saupay.data.remote.login.response.LoginResponse" />
+        <argument
+            android:name="paymentToken"
+            app:argType="string" />
+        <argument
+            android:name="email"
+            app:argType="string" />
     </activity>
 </navigation>

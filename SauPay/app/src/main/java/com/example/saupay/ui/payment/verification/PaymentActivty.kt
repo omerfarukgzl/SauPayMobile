@@ -16,6 +16,8 @@ class PaymentActivty : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_payment)
 
+        Log.d("ActivtyPayment", "paymentActivtyGeldim")
+
 
         loginResponse = intent.extras?.getSerializable("Login_Response") as LoginResponse?
         paymentToken = intent.extras?.getString("Payment_Token")

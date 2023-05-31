@@ -1,6 +1,7 @@
 package com.example.saupay.ui.payment.paymentcompleted
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -28,6 +29,9 @@ class PaymentCompletedFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding= FragmentTreeDSecureBinding.inflate(inflater, container, false)
+
+        Log.d("FragmentPaymentComplete", "fragmentPaymentCompletedGeldim")
+
         binding.okButton.setOnClickListener {
             activity?.finish()
         }

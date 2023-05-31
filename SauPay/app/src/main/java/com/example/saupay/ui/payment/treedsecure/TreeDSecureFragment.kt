@@ -32,6 +32,9 @@ class TreeDSecureFragment : Fragment() {
     ): View? {
         _binding = FragmentTreeDSecureBinding.inflate(inflater, container, false)
 
+        Log.d("FragmentTreeDsecure", "fragmentTreeDSecureGeldim")
+
+
         val loginResponse= (activity as PaymentActivty).getLoginResponse()!!
         val paymentToken = (activity as PaymentActivty).getPaymentToken()!!
 
@@ -62,7 +65,6 @@ class TreeDSecureFragment : Fragment() {
             {
                 val action = TreeDSecureFragmentDirections.actionTreeDSecureFragmentToPaymentCompletedFragment(binding.merchantName.text.toString(), binding.amount.text.toString())
                 findNavController().navigate(action)
-                activity?.finish()
             }
             else
             {

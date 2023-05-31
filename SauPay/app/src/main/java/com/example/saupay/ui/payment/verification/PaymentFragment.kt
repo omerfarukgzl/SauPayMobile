@@ -37,7 +37,7 @@ class PaymentFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentPaymentBinding.inflate(inflater, container, false)
-
+        Log.d("FragmentPayment", "fragmentPaymentGeldim")
         loginResponse= (activity as PaymentActivty).getLoginResponse()!!
         paymentToken = (activity as PaymentActivty).getPaymentToken()!!
         email = (activity as PaymentActivty).getEmail()!!

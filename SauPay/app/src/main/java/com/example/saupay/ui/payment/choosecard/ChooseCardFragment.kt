@@ -56,6 +56,8 @@ class ChooseCardFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         _binding = FragmentChooseCardBinding.inflate(inflater, container, false)
+        Log.d("FragmentChooseCard", "fragmentChooseCardGeldim")
+
         //viewManager = LinearLayoutManager(context)
         viewManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
@@ -198,7 +200,7 @@ class ChooseCardFragment : Fragment() {
                                 treeDSecureResponse!!.data!!.date!!,
                                 treeDSecureResponse!!.data!!.date!!,
                                 treeDSecureResponse!!.data!!.cardNumber!!,
-                                treeDSecureResponse!!.data!!.userPhone!!,
+                                treeDSecureResponse!!.data!!.userPhone!!
                             )
                             findNavController().navigate(action)
 

@@ -1,5 +1,6 @@
 package com.example.saupay.ui
 
+import android.app.Activity
 import android.os.Build
 import android.os.Bundle
 import android.util.Log
@@ -10,7 +11,9 @@ import com.example.saupay.data.remote.login.response.LoginResponse
 import com.example.saupay.databinding.ActivityMainBinding
 import com.example.saupay.ui.transactions.TransactionRecyclerAdapter
 
-class MainActivity :  AppCompatActivity() {
+
+class
+MainActivity :  AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: TransactionRecyclerAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -19,12 +22,13 @@ class MainActivity :  AppCompatActivity() {
 
     private var loginResponse: LoginResponse? = null
 
-    @RequiresApi(Build.VERSION_CODES.TIRAMISU)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         //setContentView(R.layout.activity_main)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        Log.d("ActivtyMain", "paymentMainGeldim")
 
 
          loginResponse = intent.extras?.getSerializable("Login_Response") as LoginResponse?
@@ -36,12 +40,6 @@ class MainActivity :  AppCompatActivity() {
             // Objeyi kullanmak için burada işlemler yapın
             Log.d("Omer", "Received object from MainActivity: $loginResponse")
         }
-
-
-
-
-
-
     }
 
     fun getSessionToken(): String? {
