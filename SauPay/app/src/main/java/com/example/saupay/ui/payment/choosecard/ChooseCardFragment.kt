@@ -62,14 +62,31 @@ class ChooseCardFragment : Fragment() {
         viewManager = LinearLayoutManager(requireContext(), LinearLayoutManager.HORIZONTAL, false)
 
         val bundle: ChooseCardFragmentArgs by navArgs()
-        val email = bundle.email
+        val data = bundle.cards
+
+        //val email = bundle.email
 
         val loginResponse= (activity as PaymentActivty).getLoginResponse()!!
         val paymentToken = (activity as PaymentActivty).getPaymentToken()!!
 
         Log.d("ChooseCardLogin", loginResponse?.token.toString())
 
-        getCardByUserEmail(paymentToken!!, loginResponse!!.token.toString(), email!!)
+        viewAdapter = CardRecyclerAdapter(data.cards!!)
+        viewPager = binding.viewPager2.apply {
+            adapter = viewAdapter
+        }
+        for (transaction in data.cards!!) {
+            Log.d("MainActivity", transaction.toString())
+        }
+
+        binding.chooseCardButton.setOnClickListener{
+
+            var currentPosition = viewPager.currentItem
+            var card = viewAdapter.getItem(currentPosition)
+            sendChooseCardRequestandGetTreeDSecureResponse(paymentToken,loginResponse.token!!, card!!.cardNumber.toString())
+        }
+
+        //getCardByUserEmail(paymentToken!!, loginResponse!!.token.toString(), email!!)
 
         return binding.root
 
@@ -90,7 +107,7 @@ class ChooseCardFragment : Fragment() {
 
             RetrofitClientCard.setBearerToken(sessionToken)
             val repository = CardRepository(RetrofitClientCard.getUserCards())
-            val call = repository.getUserCards(encryptedPaymentRequest)
+            val call = repository.getUserCardsForPayment(encryptedPaymentRequest)
 
             Log.d("BenGeldimCard", sessionToken)
             call.enqueue(object : Callback<CardResponse> {

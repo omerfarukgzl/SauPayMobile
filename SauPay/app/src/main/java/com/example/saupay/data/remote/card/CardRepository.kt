@@ -7,7 +7,15 @@ import retrofit2.Call
 class CardRepository(private var cardApi: CardApi)  {
 
      fun getUserCards(cardRequest: EncryptedRequest): Call<CardResponse> {
-        return cardApi.requestCardsBankByUserEmailForPayment(cardRequest)
+        return cardApi.requestCardsBankByUserEmail(cardRequest)
      }
+
+    fun getUserCardsForPayment(cardRequest: EncryptedRequest): Call<CardResponse> {
+        return cardApi.requestCardsBankByUserEmailForPayment(cardRequest)
+    }
+
+    fun addCard(cardRequest: EncryptedRequest): Call<CardResponse> {
+        return cardApi.addCard(cardRequest)
+    }
 
 }

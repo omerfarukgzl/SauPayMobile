@@ -15,7 +15,7 @@ import com.example.saupay.data.remote.transaction.RetrofitClientTransaction
 import com.example.saupay.data.remote.transaction.TransactionRepository
 import com.example.saupay.databinding.FragmentTransactionListBinding
 import com.example.saupay.data.remote.transaction.response.TransactionResponse
-import com.example.saupay.ui.MainActivity
+import com.example.saupay.ui.home.MainActivity
 import com.google.gson.Gson
 import org.json.JSONException
 import retrofit2.Call

@@ -1,10 +1,7 @@
-package com.example.saupay.ui
+package com.example.saupay.ui.home
 
-import android.app.Activity
-import android.os.Build
 import android.os.Bundle
 import android.util.Log
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.example.saupay.data.remote.login.response.LoginResponse
@@ -12,8 +9,7 @@ import com.example.saupay.databinding.ActivityMainBinding
 import com.example.saupay.ui.transactions.TransactionRecyclerAdapter
 
 
-class
-MainActivity :  AppCompatActivity() {
+class MainActivity :  AppCompatActivity() {
     private lateinit var recyclerView: RecyclerView
     private lateinit var viewAdapter: TransactionRecyclerAdapter
     private lateinit var viewManager: RecyclerView.LayoutManager
@@ -21,6 +17,7 @@ MainActivity :  AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private var loginResponse: LoginResponse? = null
+    private var email: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +28,9 @@ MainActivity :  AppCompatActivity() {
         Log.d("ActivtyMain", "paymentMainGeldim")
 
 
-         loginResponse = intent.extras?.getSerializable("Login_Response") as LoginResponse?
+        loginResponse = intent.extras?.getSerializable("Login_Response") as LoginResponse?
+        email = intent.extras?.getString("Email")
+
 
         Log.d("loginResponseTokOMER", loginResponse?.token.toString())
         Log.d("loginResponseRefOMER", loginResponse?.refreshToken.toString())
@@ -46,12 +45,9 @@ MainActivity :  AppCompatActivity() {
         return loginResponse!!.token.toString()
     }
 
-
-
-
-
-
-
+    fun getEmail(): String? {
+        return email.toString()
+    }
 
 }
 

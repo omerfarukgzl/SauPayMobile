@@ -1,7 +1,5 @@
 package com.example.saupay.ui.authentication.login
 
-import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -10,13 +8,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
+import androidx.navigation.findNavController
+import androidx.navigation.fragment.findNavController
 import com.example.saupay.data.remote.login.LoginRepository
 import com.example.saupay.data.remote.login.RetrofitClientLogin
 import com.example.saupay.data.remote.login.request.LoginRequest
 import com.example.saupay.data.remote.login.response.LoginResponse
 import com.example.saupay.databinding.FragmentLoginBinding
-import com.example.saupay.ui.MainActivity
+import com.example.saupay.ui.home.MainActivity
 import com.example.saupay.ui.authentication.AuthenticationActivty
 import com.example.saupay.ui.payment.verification.PaymentActivty
 import org.json.JSONException
@@ -34,15 +33,6 @@ class LoginFragment : Fragment() {
     private val binding get() = _binding!!
     private var paymentToken : String?= null
 
-/*    private var myActivity: FragmentActivity? = null*/
-
-/*    override fun onAttach(context: Context) {
-        super.onAttach(context)
-        if (context is FragmentActivity) {
-            myActivity = context
-        }
-    }*/
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,6 +48,11 @@ class LoginFragment : Fragment() {
 
         binding.loginButton.setOnClickListener{
             sendLoginRequest(binding.username.text.toString(),binding.password.text.toString())
+        }
+
+        binding.registerButton.setOnClickListener{
+           val action = LoginFragmentDirections.actionLoginFragmentToRegisterFragment()
+            findNavController().navigate(action)
         }
 
         return binding.root
@@ -98,6 +93,7 @@ class LoginFragment : Fragment() {
                             else{
                                 val intent = Intent(activity, MainActivity::class.java)
                                 intent.putExtra("Login_Response",loginResponse)
+                                intent.putExtra("Email",email)
                                 startActivity(intent)
                             }
                         }

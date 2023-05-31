@@ -2,6 +2,7 @@ package com.example.saupay.model.card
 
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
+import java.io.Serializable
 
 data class Card (
     @SerializedName("cardNumber") 
@@ -25,6 +26,6 @@ data class Card (
     @SerializedName("bankName")
     @Expose
     val bankName:String? = null
-){
+): Serializable {
 
 }

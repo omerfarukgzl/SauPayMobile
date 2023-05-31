@@ -10,4 +10,10 @@ interface CardApi {
 
     @POST("getBankCardsByUserEmailForPayment")
     fun requestCardsBankByUserEmailForPayment(@Body encryptedPaymentRequest: EncryptedRequest): Call<CardResponse>
+
+    @POST("getBankCardsByUserEmail")
+    fun requestCardsBankByUserEmail(@Body encryptedPaymentRequest: EncryptedRequest): Call<CardResponse>
+
+    @POST("addCard")
+    fun addCard(@Body encryptedPaymentRequest: EncryptedRequest): Call<CardResponse>
 }

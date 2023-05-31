@@ -1,7 +1,9 @@
 package com.example.saupay.data.remote.login
 
 import com.example.saupay.data.remote.login.request.LoginRequest
+import com.example.saupay.data.remote.login.request.RegisterRequest
 import com.example.saupay.data.remote.login.response.LoginResponse
+import com.example.saupay.data.remote.login.response.RegisterResponse
 import com.example.saupay.data.remote.transaction.response.TransactionResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -13,5 +15,8 @@ interface LoginApi {
 
     @POST("login")
     fun loginRequest(@Body loginRequest: LoginRequest): Call<LoginResponse>
+
+    @POST("register")
+    fun registerRequest(@Body registerRequest: RegisterRequest): Call<RegisterResponse>
 
 }

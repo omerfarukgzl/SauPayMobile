@@ -6,14 +6,17 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.navigation.fragment.navArgs
 import com.example.saupay.R
+import com.example.saupay.databinding.FragmentPaymentCompletedBinding
 import com.example.saupay.databinding.FragmentTreeDSecureBinding
+import com.example.saupay.ui.payment.treedsecure.TreeDSecureFragmentArgs
 
 
 class PaymentCompletedFragment : Fragment() {
 
 
-    private var _binding: FragmentTreeDSecureBinding? = null
+    private var _binding: FragmentPaymentCompletedBinding? = null
     private val binding get() = _binding!!
 
 
@@ -28,11 +31,18 @@ class PaymentCompletedFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        _binding= FragmentTreeDSecureBinding.inflate(inflater, container, false)
+        _binding= FragmentPaymentCompletedBinding.inflate(inflater, container, false)
+        val bundle: PaymentCompletedFragmentArgs by navArgs()
+        val merchantName = bundle.merchantName
+        val amount = bundle.amount
+
 
         Log.d("FragmentPaymentComplete", "fragmentPaymentCompletedGeldim")
 
-        binding.okButton.setOnClickListener {
+        binding.merchantNametText.text = merchantName
+        binding.amountText.text = amount
+
+        binding.button.setOnClickListener {
             activity?.finish()
         }
 

@@ -63,7 +63,7 @@ class TreeDSecureFragment : Fragment() {
         binding.okButton.setOnClickListener {
             if (binding.VerifyCode.text.toString().equals("545454"))
             {
-                val action = TreeDSecureFragmentDirections.actionTreeDSecureFragmentToPaymentCompletedFragment(binding.merchantName.text.toString(), binding.amount.text.toString())
+                val action = TreeDSecureFragmentDirections.actionTreeDSecureFragmentToPaymentCompletedFragment(merchantName,amount)
                 findNavController().navigate(action)
             }
             else
