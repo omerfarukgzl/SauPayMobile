@@ -8,10 +8,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.navigation.NavArgs
+import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.saugetir.data.remote.model.request.EncryptedRequest
 import com.example.saupay.data.remote.card.CardRepository
 import com.example.saupay.data.remote.card.RetrofitClientCard
+import com.example.saupay.data.remote.card.response.AddCardResponse
 import com.example.saupay.data.remote.card.response.CardResponse
 import com.example.saupay.databinding.FragmentAddCardBinding
 import com.example.saupay.ui.payment.choosecard.CardRecyclerAdapter
@@ -46,15 +48,16 @@ class AddCardFragment : Fragment() {
         val loginResponse= (activity as PaymentActivty).getLoginResponse()!!
         val paymentToken = (activity as PaymentActivty).getPaymentToken()!!
 
-        val cardNumber = binding.cardNumberEditText.text.toString()
-        val cardName = binding.cardHolderNameEditText.text.toString()
-        val cardCvv = binding.cardCvvEditText.text.toString()
-        val cardExpireDate = binding.cardDateEditText.text.toString()
+        binding.button2.setOnClickListener {
 
+            val cardNumber = binding.cardNumberEditText.text.toString()
+            val cardName = binding.cardHolderNameEditText.text.toString()
+            val cardCvv = binding.cardCvvEditText.text.toString()
+            val cardExpireDate = binding.cardDateEditText.text.toString()
 
+            addCard(paymentToken, loginResponse.token.toString(), email, cardNumber, cardName, cardCvv, cardExpireDate)
+        }
 
-
-        addCard(paymentToken, loginResponse.token.toString(), email, cardNumber, cardName, cardCvv, cardExpireDate)
 
 
         return binding.root
@@ -69,6 +72,7 @@ class AddCardFragment : Fragment() {
             val paramObject = JSONObject()
             paramObject.put("email", email)
             paramObject.put("cardNumber", cardNumber)
+            paramObject.put("binNumber", Integer.parseInt(cardNumber.substring(0, 6)))
             paramObject.put("cardHolderName", cardName)
             paramObject.put("cardCvv", cardCvv)
             paramObject.put("cardExpireDate", cardExpireDate)
@@ -80,12 +84,12 @@ class AddCardFragment : Fragment() {
 
             RetrofitClientCard.setBearerToken(sessionToken)
             val repository = CardRepository(RetrofitClientCard.getUserCards())
-            val call = repository.getUserCards(encryptedPaymentRequest)
+            val call = repository.addCard(encryptedPaymentRequest)
 
             Log.d("BenGeldimCard", sessionToken)
-            call.enqueue(object : Callback<CardResponse> {
+            call.enqueue(object : Callback<AddCardResponse> {
                 //onResponse fonksiyonu, sunucudan dönen cevabı işlemek için kullanılır.
-                override fun onResponse(call: Call<CardResponse>, response: Response<CardResponse>) {
+                override fun onResponse(call: Call<AddCardResponse>, response: Response<AddCardResponse>) {
                     Log.d("MainActivity", response.body().toString())
                     if (response.isSuccessful) {
 
@@ -95,6 +99,9 @@ class AddCardFragment : Fragment() {
                             Log.d("MainActivity", "isSuccessful")
                             val cardResponse = response.body()!!
                             Log.d("transactionResponse", cardResponse.toString())
+
+                            val action = AddCardFragmentDirections.actionAddCardFragmentToPaymentFragment()
+                            findNavController().navigate(action)
 
 
                         }
@@ -123,7 +130,7 @@ class AddCardFragment : Fragment() {
 
                 }
                 // onFailure fonksiyonu, sunucuya istek gönderirken bir hata oluşması durumunda çalışır.
-                override fun onFailure(call: Call<CardResponse>, t: Throwable) {
+                override fun onFailure(call: Call<AddCardResponse>, t: Throwable) {
                     Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
                     Log.e("MainActivityError", t.message!!)
                 }

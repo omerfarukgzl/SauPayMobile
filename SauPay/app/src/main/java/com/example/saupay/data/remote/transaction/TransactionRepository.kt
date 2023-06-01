@@ -5,8 +5,8 @@ import retrofit2.Call
 
 class TransactionRepository(private var transactionApi: TransactionApi)  {
 
-     fun requestInitToken(userId: String): Call<TransactionResponse> {
-       return transactionApi.getTransactionByUserId(userId)
+     fun requestInitToken(email: String): Call<TransactionResponse> {
+       return transactionApi.getTransactionByUserEmail(email)
     }
 
 }

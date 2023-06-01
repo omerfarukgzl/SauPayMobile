@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface TransactionApi {
 
-    @GET("getTransactionMerchantByUserId/{userId}")
-    fun getTransactionByUserId(@Path("userId") userId: String): retrofit2.Call<TransactionResponse>
+    @GET("getTransactionMerchantByUserEmail/{email}")
+    fun getTransactionByUserEmail(@Path("email") email: String): retrofit2.Call<TransactionResponse>
 
 }

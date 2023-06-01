@@ -16,6 +16,7 @@ import com.example.saupay.data.remote.transaction.TransactionRepository
 import com.example.saupay.databinding.FragmentTransactionListBinding
 import com.example.saupay.data.remote.transaction.response.TransactionResponse
 import com.example.saupay.ui.home.MainActivity
+import com.example.saupay.ui.payment.verification.PaymentActivty
 import com.google.gson.Gson
 import org.json.JSONException
 import retrofit2.Call
@@ -48,11 +49,13 @@ class TransactionListFragment : Fragment() {
 
         Log.d("Omer2","Ben Omer")
         Log.d("OmerOmer", (activity as MainActivity).getSessionToken()!!)
-        getTransactionsByUserId("9aae5862-3601-4bcf-b5af-cae44e6cd705", (activity as MainActivity).getSessionToken()!!)
+        val email = (activity as MainActivity).getEmail()!!
+        val sessionToken = (activity as MainActivity).getSessionToken()!!
+        getTransactionsByUserEmail(email, sessionToken)
         return binding.root
     }
 
-    fun getTransactionsByUserId(userId:String, sessionToken:String)
+    fun getTransactionsByUserEmail(email:String, sessionToken:String)
     {
         try {
             var encryptedTokenRequest = EncryptedTokenRequest()
@@ -62,7 +65,7 @@ class TransactionListFragment : Fragment() {
 
             RetrofitClientTransaction.setBearerToken(sessionToken)
             val repository = TransactionRepository(RetrofitClientTransaction.getTransaction())
-            val call = repository.requestInitToken(userId)
+            val call = repository.requestInitToken(email)
 
             call.enqueue(object : Callback<TransactionResponse> {
                 //onResponse fonksiyonu, sunucudan dönen cevabı işlemek için kullanılır.
@@ -90,7 +93,7 @@ class TransactionListFragment : Fragment() {
 
                     }
                     else {
-                        val errorBody = response.errorBody()?.string()
+/*                        val errorBody = response.errorBody()?.string()
 
                         val gson = Gson()
                         val errorResponse = gson.fromJson(errorBody, ErrorResponse::class.java)
@@ -100,7 +103,7 @@ class TransactionListFragment : Fragment() {
 
                         Log.d("MainActivity",errorBody.toString())
                         Log.d("MainActivity", "isn't Successful")
-                        Log.d("MainActivity", transactionResponse.toString())
+                        Log.d("MainActivity", transactionResponse.toString())*/
                         viewAdapter = TransactionRecyclerAdapter(listOf())
 
                         recyclerView = binding.recyclerTransactions.apply {
@@ -109,7 +112,7 @@ class TransactionListFragment : Fragment() {
                             adapter = viewAdapter
                         }
                         binding.errorMaessage.visibility = View.VISIBLE
-                        binding.errorMaessage.text = transactionResponse.toString()
+                        //binding.errorMaessage.text = transactionResponse.toString()
                     }
 
                 }
