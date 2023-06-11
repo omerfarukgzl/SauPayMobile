@@ -12,14 +12,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.viewpager2.widget.ViewPager2
 import com.example.saugetir.data.remote.model.request.EncryptedRequest
-import com.example.saupay.data.remote.card.CardRepository
-import com.example.saupay.data.remote.card.TreeDSecureRepository
-import com.example.saupay.data.remote.card.RetrofitClientCard
-import com.example.saupay.data.remote.card.RetrofitClientTreeDSecure
+import com.example.saupay.data.remote.card.*
 import com.example.saupay.data.remote.card.response.CardResponse
+import com.example.saupay.data.remote.treedsecure.response.PaymentBankResponse
 import com.example.saupay.data.remote.treedsecure.response.TreeDSecureResponse
 import com.example.saupay.databinding.FragmentChooseCardBinding
-import com.example.saupay.model.treedSecure.TreeDSecure
 import com.example.saupay.ui.payment.verification.PaymentActivty
 import com.example.saupay.utils.EncryptionUtil
 import org.json.JSONException
