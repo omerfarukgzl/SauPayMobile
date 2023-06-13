@@ -20,11 +20,11 @@ class StartActivity : AppCompatActivity() {
             val receivedData = data.getQueryParameter("token")
             Log.d("SauGetirdenGelenToken: " , receivedData.toString())
 
+            Thread.sleep(2000)
+
             val intent = Intent(this, AuthenticationActivty::class.java)
             intent.putExtra("Received_Data",receivedData.toString())
             startActivity(intent)
-
-
             // Veriyi kullanın
         }
     }

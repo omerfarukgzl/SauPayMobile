@@ -78,7 +78,7 @@ class TreeDSecureFragment : Fragment() {
             if (binding.VerifyCode.text.toString().equals("545454"))
             {
                 //val action = TreeDSecureFragmentDirections.actionTreeDSecureFragmentToPaymentCompletedFragment(merchantName,amount)
-                payment(paymentToken, loginResponse.token!!, amount.toBigDecimal(), "205", cardNumber)
+                payment(paymentToken, loginResponse.token!!, amount.toBigDecimal(), "205", cardNumber,merchantName)
                 //findNavController().navigate(action)
             }
             else
@@ -95,7 +95,7 @@ class TreeDSecureFragment : Fragment() {
 
 
 
-    fun payment(paymentToken:String, sessionToken:String,amount:BigDecimal, bankCode:String, cardNumber:String)
+    fun payment(paymentToken:String, sessionToken:String,amount:BigDecimal, bankCode:String, cardNumber:String, merchantName:String)
     {
         try {
             var encryptedPaymentRequest = EncryptedRequest()
@@ -128,8 +128,8 @@ class TreeDSecureFragment : Fragment() {
                             val paymentBankResponse = response.body()!!
                             Log.d("transactionResponse", paymentBankResponse.toString())
 
-                            //val action = TreeDSecureFragmentDirections.actionTreeDSecureFragmentToPaymentCompletedFragment(paymentBankResponse.,paymentBankResponse.amount.toString())
-
+                            val action = TreeDSecureFragmentDirections.actionTreeDSecureFragmentToPaymentCompletedFragment(merchantName,amount.toString())
+                            findNavController().navigate(action)
                         }
 
                     }
