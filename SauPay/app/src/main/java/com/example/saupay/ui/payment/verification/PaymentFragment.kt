@@ -1,5 +1,7 @@
 package com.example.saupay.ui.payment.verification
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -95,10 +97,12 @@ class PaymentFragment : Fragment() {
 
                                 getCardByUserEmail(paymentToken, loginResponse!!.token.toString(), email!!)
 
-
-/*                                val action = PaymentFragmentDirections.actionPaymentFragmentToChooseCardFragment(email)
-                                findNavController().navigate(action)*/
-
+                            }
+                            binding.cancelButton.setOnClickListener{
+                                val deepLinkUrl = "http://www.saugetir5454.com/result?result=" + false;
+                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(deepLinkUrl))
+                                startActivity(intent)
+                                activity?.finish()
                             }
 
                         }
@@ -107,6 +111,8 @@ class PaymentFragment : Fragment() {
                     else {
                         Log.d("MainActivity","else Hatası")
                         Log.d("MainActivity", response.errorBody().toString())
+
+                        Toast.makeText(activity, "Service Error", Toast.LENGTH_SHORT).show()
 /*                        val errorBody = response.errorBody()?.string()
 
                         val gson = Gson()

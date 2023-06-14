@@ -119,7 +119,7 @@ class TransactionListFragment : Fragment() {
                 // onFailure fonksiyonu, sunucuya istek gönderirken bir hata oluşması durumunda çalışır.
                 override fun onFailure(call: Call<TransactionResponse>, t: Throwable) {
                     Toast.makeText(activity, "Error", Toast.LENGTH_SHORT).show()
-                    Log.e("MainActivityError", t.message!!)
+                    Log.e("TransactionLstFragmentE", t.message!!)
                 }
             })
 

@@ -1,5 +1,7 @@
 package com.example.saupay.ui.payment.choosecard
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -83,6 +85,13 @@ class ChooseCardFragment : Fragment() {
             sendChooseCardRequestandGetTreeDSecureResponse(paymentToken,loginResponse.token!!, card!!.cardNumber.toString())
         }
 
+        binding.chooseCardCancelButton.setOnClickListener{
+            val deepLinkUrl = "http://www.saugetir5454.com/result?result=" + false;
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(deepLinkUrl))
+            startActivity(intent)
+            activity?.finish()
+        }
+
         //getCardByUserEmail(paymentToken!!, loginResponse!!.token.toString(), email!!)
 
         return binding.root
@@ -139,6 +148,8 @@ class ChooseCardFragment : Fragment() {
 
                     }
                     else {
+
+                        Toast.makeText(context, "Kartlarınız getirilirken bir hata oluştu", Toast.LENGTH_SHORT).show()
                         Log.d("MainActivity","else Hatası")
                         Log.d("MainActivity", response.errorBody().toString())
 

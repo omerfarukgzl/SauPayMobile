@@ -1,6 +1,9 @@
 package com.example.saupay.ui.payment.treedsecure
 
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
+import android.os.CountDownTimer
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -33,7 +36,7 @@ class TreeDSecureFragment : Fragment() {
     private var _binding: FragmentTreeDSecureBinding? = null
     private val binding get() = _binding!!
 
-
+    var time:Long=180
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -74,6 +77,16 @@ class TreeDSecureFragment : Fragment() {
         binding.clock.text = clock
         binding.phoneNumber.text = telNumber
 
+        object : CountDownTimer(time*1000, 1000) {//time değişkenimizi long türünde tanımlayıp timerın ne kadar süreceğini belirtiyoruz fakat 1000 ile çarpıyoruz ki saniye olarak alabilsin.
+        override fun onFinish() {//Süre bittiğinde fonksiyonunda time değişkenini sıfırla dedik
+            time=0
+        }
+            override fun onTick(p0: Long) {//Her saniye başı geldiğinde yapılacak işlemler
+                time--
+                binding.timer.text= time.toString()
+            }
+        }.start()
+
         binding.okButton.setOnClickListener {
             if (binding.VerifyCode.text.toString().equals("545454"))
             {
@@ -86,6 +99,13 @@ class TreeDSecureFragment : Fragment() {
                 Log.d("TreeDSecureFragment", "VerifyCode: " + binding.VerifyCode.text.toString())
                 Toast.makeText(activity, "Doğrulama kodu hatalı", Toast.LENGTH_SHORT).show()
             }
+        }
+
+        binding.cancelButton2.setOnClickListener{
+            val deepLinkUrl = "http://www.saugetir5454.com/result?result=" + false;
+            val intent = Intent(Intent.ACTION_VIEW, Uri.parse(deepLinkUrl))
+            startActivity(intent)
+            activity?.finish()
         }
 
        return binding.root
@@ -134,6 +154,8 @@ class TreeDSecureFragment : Fragment() {
 
                     }
                     else {
+
+                        Toast.makeText(activity, "Ödeme Başarısız", Toast.LENGTH_LONG).show()
                         Log.d("MainActivity","else Hatası")
                         Log.d("MainActivity", response.errorBody().toString())
 /*                        val errorBody = response.errorBody()?.string()
